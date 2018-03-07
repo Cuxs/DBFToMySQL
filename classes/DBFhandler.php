@@ -6,7 +6,8 @@
  * Howto use it:
   $Test = new DBFhandler("customer.DBF", "customer.FPT");
   while(($Record = $Test->GetNextRecord(true)) and !empty($Record)) {
-        print_r($Record);
+        print_r($Record[ 'value' ]);
+        print_r($Record[ 'type' ]);
   }
  */
 class DBFhandler {
@@ -150,7 +151,8 @@ class DBFhandler {
                 }
 
                 if ( $FieldCaptions ) {
-                    $Record[ $Field[ "Name" ] ] = $Value;
+                    $Record[ 'value' ][ $Field[ "Name" ] ] = $Value;
+                    $Record[ 'type' ][ $Field[ "Name" ] ] = $Field[ "Type" ];
                 } else {
                     $Record[] = $Value;
                 }
