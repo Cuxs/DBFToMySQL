@@ -31,10 +31,29 @@ php dbf-import.php
 ```
 
 Known-issues
-------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+
+
+<!-- /code_chunk_output -->
+-------------------------------------------------------------------------------
 
 - if a date field is 0, then the the corresponding date with 0 is inserted (january first, 1970).
 - the php-xbase thing is in the subdir "classes". As a ruby programmer, i didn't find how to make this separate whithin the day, I spent on solving this problem. If someone can help me with this problem.
+
+License
+------------------------------------------------------------------------------------------------------------------------
+
+Differences with DBF To MySql
+------------------------------------------------------------------------------------------------------------------------
+
+- Nows it generates a script per table in a folder called *convertedTables*. **It does not run the migration automatically.**
+- Keep in mind that we are generating a script with no `COPY` instruction but a multiple `INSERT INTO VALUES`.
+- You can migrate the tables running this inside convertedTables:
+ `cat table1.sql table2.sql ... | psql -U <user> --password <databaseName>`
 
 License
 ------------------------------------------------------------------------------------------------------------------------
